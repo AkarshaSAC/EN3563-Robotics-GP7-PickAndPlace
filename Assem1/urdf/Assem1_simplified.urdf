@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Simplified Geometric D-H Model of YASKAWA GP7 6-DoF Robot Arm + Gripper
+     Constructed directly from the Denavit-Hartenberg (D-H) parameter table:
+     d1 = 0.330 m (0.199 + 0.131), a1 = 0.040 m, a2 = 0.445 m, a3 = 0.040 m, d4 = 0.442 m, d6 = 0.1125 m -->
+<robot name="Assem1">
+
+  <link name="world"/>
+  <joint name="world_to_base_link" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0.10" rpy="0 0 0"/>
+      <mass value="5.215"/>
+      <inertia ixx="0.026" ixy="0" ixz="0" iyy="0.025" iyz="0" izz="0.021"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.10" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.095" length="0.20"/></geometry>
+      <material name="dark_grey"><color rgba="0.20 0.22 0.25 1"/></material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.10" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.095" length="0.20"/></geometry>
+    </collision>
+  </link>
+
+  <link name="link1">
+    <inertial>
+      <origin xyz="-0.02 0 0.065" rpy="0 0 0"/>
+      <mass value="2.945"/>
+      <inertia ixx="0.011" ixy="0" ixz="0" iyy="0.012" iyz="0" izz="0.009"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.02 0 0.065" rpy="0 0 0"/>
+      <geometry><box size="0.12 0.12 0.131"/></geometry>
+      <material name="yaskawa_blue"><color rgba="0.05 0.35 0.78 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="link0_to_link1_joint" type="revolute">
+    <origin xyz="0 0 0.199" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-6.28318" upper="6.28318" effort="200" velocity="6.5"/>
+  </joint>
+
+  <link name="link2">
+    <inertial>
+      <origin xyz="0 0.2225 0" rpy="0 0 0"/>
+      <mass value="6.240"/>
+      <inertia ixx="0.126" ixy="0" ixz="0" iyy="0.028" iyz="0" izz="0.110"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0.2225 0" rpy="1.5707963267949 0 0"/>
+      <geometry><cylinder radius="0.055" length="0.445"/></geometry>
+      <material name="yaskawa_blue"><color rgba="0.05 0.35 0.78 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="link1_to_link2_joint" type="revolute">
+    <origin xyz="-0.040 0 0.131" rpy="1.5707963267949 0 3.14159265358979"/>
+    <parent link="link1"/>
+    <child link="link2"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="-3.14159" upper="3.14159" effort="200" velocity="5.5"/>
+  </joint>
+
+  <link name="link3">
+    <inertial>
+      <origin xyz="0.02 0 0" rpy="0 0 0"/>
+      <mass value="2.849"/>
+      <inertia ixx="0.007" ixy="0" ixz="0" iyy="0.008" iyz="0" izz="0.008"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.02 0 0" rpy="0 0 0"/>
+      <geometry><sphere radius="0.065"/></geometry>
+      <material name="yaskawa_white"><color rgba="0.88 0.90 0.92 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="link2_to_link3_joint" type="revolute">
+    <origin xyz="0 0.445 0" rpy="0 0 1.5707963267949"/>
+    <parent link="link2"/>
+    <child link="link3"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="-3.14159" upper="3.14159" effort="200" velocity="7.0"/>
+  </joint>
+
+  <link name="link4">
+    <inertial>
+      <origin xyz="0 0 0.221" rpy="0 0 0"/>
+      <mass value="2.755"/>
+      <inertia ixx="0.010" ixy="0" ixz="0" iyy="0.011" iyz="0" izz="0.003"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.221" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.042" length="0.442"/></geometry>
+      <material name="yaskawa_blue"><color rgba="0.05 0.35 0.78 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="link3_to_link4_joint" type="revolute">
+    <origin xyz="0.040 0 0" rpy="1.5707963267949 0 0"/>
+    <parent link="link3"/>
+    <child link="link4"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14159" upper="3.14159" effort="150" velocity="9.5"/>
+  </joint>
+
+  <link name="llink5">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.246"/>
+      <inertia ixx="0.0002" ixy="0" ixz="0" iyy="0.0002" iyz="0" izz="0.0002"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><sphere radius="0.042"/></geometry>
+      <material name="yaskawa_white"><color rgba="0.88 0.90 0.92 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="link4_to_llink5_joint" type="revolute">
+    <origin xyz="0 0 0.442" rpy="-1.5707963267949 0 0"/>
+    <parent link="link4"/>
+    <child link="llink5"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="-3.14159" upper="3.14159" effort="150" velocity="9.5"/>
+  </joint>
+
+  <link name="link6">
+    <inertial>
+      <origin xyz="0 0 0.06" rpy="0 0 0"/>
+      <mass value="0.056"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.04375" rpy="0 0 0"/>
+      <geometry><box size="0.07 0.09 0.0875"/></geometry>
+      <material name="dark_grey"><color rgba="0.22 0.24 0.28 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="link5_to_link6_joint" type="revolute">
+    <origin xyz="0 0 0" rpy="1.5707963267949 0 0"/>
+    <parent link="llink5"/>
+    <child link="link6"/>
+    <axis xyz="0 0 -1"/>
+    <limit lower="-6.28318" upper="6.28318" effort="100" velocity="15.0"/>
+  </joint>
+
+  <link name="tcp_link"/>
+  <joint name="link6_to_tcp_joint" type="fixed">
+    <origin xyz="0 0 0.1125" rpy="0 0 0"/>
+    <parent link="link6"/>
+    <child link="tcp_link"/>
+  </joint>
+
+  <link name="link7">
+    <inertial>
+      <origin xyz="0 -0.025 0.04" rpy="0 0 0"/>
+      <mass value="0.0275"/>
+      <inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 -0.025 0.04" rpy="0 0 0"/>
+      <geometry><box size="0.07 0.05 0.01"/></geometry>
+      <material name="gripper_orange"><color rgba="0.95 0.45 0.10 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="link6_to_link7_joint" type="prismatic">
+    <origin xyz="0 0 0.0875" rpy="-1.5707963267949 0 0"/>
+    <parent link="link6"/>
+    <child link="link7"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-0.025" upper="0" effort="50" velocity="0.5"/>
+  </joint>
+
+  <link name="link8">
+    <inertial>
+      <origin xyz="0 -0.025 -0.04" rpy="0 0 0"/>
+      <mass value="0.0275"/>
+      <inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 -0.025 -0.04" rpy="0 0 0"/>
+      <geometry><box size="0.07 0.05 0.01"/></geometry>
+      <material name="gripper_orange"><color rgba="0.95 0.45 0.10 1"/></material>
+    </visual>
+  </link>
+
+  <joint name="link6_to_link8_joint" type="prismatic">
+    <origin xyz="0 0 0.0875" rpy="-1.5707963267949 0 0"/>
+    <parent link="link6"/>
+    <child link="link8"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="0" upper="0.025" effort="50" velocity="0.5"/>
+  </joint>
+
+  <gazebo>
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+      <topic>/joint_states</topic>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>link0_to_link1_joint</joint_name>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>18.0</p_gain><cmd_max>6.5</cmd_max><topic>/gp7/joint1/cmd_pos</topic>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>link1_to_link2_joint</joint_name>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>18.0</p_gain><cmd_max>5.5</cmd_max><topic>/gp7/joint2/cmd_pos</topic>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>link2_to_link3_joint</joint_name>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>18.0</p_gain><cmd_max>7.0</cmd_max><topic>/gp7/joint3/cmd_pos</topic>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>link3_to_link4_joint</joint_name>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>18.0</p_gain><cmd_max>9.5</cmd_max><topic>/gp7/joint4/cmd_pos</topic>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>link4_to_llink5_joint</joint_name>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>18.0</p_gain><cmd_max>9.5</cmd_max><topic>/gp7/joint5/cmd_pos</topic>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>link5_to_link6_joint</joint_name>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>18.0</p_gain><cmd_max>15.0</cmd_max><topic>/gp7/joint6/cmd_pos</topic>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>link6_to_link7_joint</joint_name>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>15.0</p_gain><cmd_max>0.5</cmd_max><topic>/gp7/gripper_left/cmd_pos</topic>
+    </plugin>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>link6_to_link8_joint</joint_name>
+      <use_velocity_commands>true</use_velocity_commands>
+      <p_gain>15.0</p_gain><cmd_max>0.5</cmd_max><topic>/gp7/gripper_right/cmd_pos</topic>
+    </plugin>
+    <plugin filename="gz-sim-detachable-joint-system" name="gz::sim::systems::DetachableJoint">
+      <parent_link>link6</parent_link>
+      <child_model>box_b</child_model>
+      <child_link>box_b_link</child_link>
+      <detach_topic>/gp7/gripper/detach</detach_topic>
+      <attach_topic>/gp7/gripper/attach</attach_topic>
+    </plugin>
+  </gazebo>
+
+</robot>

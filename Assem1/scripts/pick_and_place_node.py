@@ -29,8 +29,8 @@ class GP7PickAndPlaceNode(Node):
         super().__init__("gp7_pick_and_place_controller")
 
         # Declare ROS 2 parameters
-        self.declare_parameter("box_a_x", 0.50)
-        self.declare_parameter("box_a_y", 0.50)
+        self.declare_parameter("box_a_x", -0.40)
+        self.declare_parameter("box_a_y", -0.30)
         self.declare_parameter("box_b_x", -0.35)
         self.declare_parameter("box_b_y", 0.45)
         self.declare_parameter("velocity_profile", "s_curve")
